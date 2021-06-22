@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<SimBase.Document Type="AddOnXml" version="3,3" id="add-on">
+    <AddOn.Name>SkyTrack Reminder</AddOn.Name>
+    <AddOn.Description>SkyTrack Reminder</AddOn.Description>
+    <AddOn.Component>
+        <Category>DLL</Category>
+        <Path>SkyTrackReminderP3D.dll</Path>
+        <DLLType>PDK</DLLType>
+    </AddOn.Component>
+</SimBase.Document>

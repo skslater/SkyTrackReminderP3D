@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DFCE1324-987C-4387-AC34-EBA1B01B5784}</ProjectGuid>
+    <RootNamespace>Automobile</RootNamespace>
+    <ProjectName>SkyTrackReminderP3D</ProjectName>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+    <TargetExt>.dll</TargetExt>
+    <OutDir>$(SolutionDir)Output\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Output\$(Configuration)\Intermediate\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+    <TargetExt>.dll</TargetExt>
+    <OutDir>$(SolutionDir)Output\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Output\$(Configuration)\Intermediate\</IntDir>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Program Files\Lockheed Martin\Prepar3D v5 SDK 5.2.18.27565\inc\PDK;C:\Program Files\Lockheed Martin\Prepar3D v5 SDK 5.2.18.27565\inc\PDK\Helpers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CallingConvention>StdCall</CallingConvention>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>SkyTrackReminderP3D.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="DLLMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SkyTrackReminderP3D.def" />
+  </ItemGroup>
+  <PropertyGroup>
+    <CopyTargets>
+      CopyContent;
+    </CopyTargets>
+  </PropertyGroup>
+  <Target Name="CopyContent">
+    <ItemGroup>
+      <CopyContentList Include="Content\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(CopyContentList)" DestinationFiles="$(OutputPath)\%(RecursiveDir)%(Filename)%(Extension)" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="$(SkipUnchangedFiles)" />
+  </Target>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Target Name="AfterBuild" DependsOnTargets="$(CopyTargets)" Condition="'$(SkipContent)'!='true'" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
